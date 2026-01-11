@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { 
-  Calendar, 
-  BookOpen, 
-  Briefcase, 
-  GraduationCap, 
-  CheckCircle2, 
-  ClipboardList, 
-  User, 
-  Target, 
+import {
+  Calendar,
+  BookOpen,
+  Briefcase,
+  GraduationCap,
+  CheckCircle2,
+  ClipboardList,
+  User,
+  Target,
   FileText,
   Clock,
   Flag,
@@ -114,7 +114,7 @@ const AnnualPlan = () => {
           <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12"><GraduationCap size={150} /></div>
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 bg-indigo-500/30 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-indigo-400/30 mb-4">
-              Strategic Roadmap 2025
+              Strategic Roadmap 2026
             </div>
             <h1 className="text-4xl font-black mb-2 tracking-tight">年度進度與研究計畫總表</h1>
             <p className="text-indigo-200 text-lg font-medium opacity-80 flex items-center gap-2">
@@ -122,7 +122,7 @@ const AnnualPlan = () => {
             </p>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 p-8 bg-white">
           <div className="md:col-span-1 space-y-4">
             <div className="bg-indigo-50 p-4 rounded-2xl border border-indigo-100">
@@ -263,14 +263,14 @@ const WeeklySchedule = () => {
               <div className="space-y-8">
                 <div>
                   <div className="inline-flex bg-blue-600 text-[10px] font-black px-3 py-1.5 rounded-lg mb-4 uppercase tracking-[0.2em] shadow-lg shadow-blue-600/20">Selected Week Detail</div>
-                  <h3 className="text-3xl font-black mb-2 text-white tracking-tight">{scheduleData[activeWeek-1].title}</h3>
+                  <h3 className="text-3xl font-black mb-2 text-white tracking-tight">{scheduleData[activeWeek - 1].title}</h3>
                   <div className="flex gap-4 items-center">
-                    <span className="text-slate-400 text-xs font-bold uppercase flex items-center gap-1.5"><BookOpen size={14} /> Chapters: {scheduleData[activeWeek-1].chapters}</span>
-                    <span className="text-slate-400 text-xs font-bold uppercase flex items-center gap-1.5"><Clock size={14} /> {scheduleData[activeWeek-1].hours}h Estimated</span>
+                    <span className="text-slate-400 text-xs font-bold uppercase flex items-center gap-1.5"><BookOpen size={14} /> Chapters: {scheduleData[activeWeek - 1].chapters}</span>
+                    <span className="text-slate-400 text-xs font-bold uppercase flex items-center gap-1.5"><Clock size={14} /> {scheduleData[activeWeek - 1].hours}h Estimated</span>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
-                  {scheduleData[activeWeek-1].tasks.map((t, i) => (
+                  {scheduleData[activeWeek - 1].tasks.map((t, i) => (
                     <div key={i} className="flex items-center gap-4 text-sm bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 hover:border-blue-500/50 transition-all group">
                       <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all">
                         <CheckCircle2 size={18} />
@@ -283,12 +283,12 @@ const WeeklySchedule = () => {
               <div className="space-y-8">
                 <div className="bg-gradient-to-br from-amber-500/20 to-transparent border border-amber-500/30 p-8 rounded-[2rem] shadow-2xl">
                   <div className="flex items-center gap-3 text-amber-500 font-black text-xs mb-4 uppercase tracking-widest"><Flag size={20} /> Meeting Objectives</div>
-                  <p className="text-xl font-black text-white leading-relaxed tracking-tight">「{scheduleData[activeWeek-1].milestone}」</p>
+                  <p className="text-xl font-black text-white leading-relaxed tracking-tight">「{scheduleData[activeWeek - 1].milestone}」</p>
                 </div>
-                {scheduleData[activeWeek-1].specialEvent && (
+                {scheduleData[activeWeek - 1].specialEvent && (
                   <div className="bg-rose-500/10 border border-rose-500/20 p-8 rounded-[2rem]">
                     <div className="flex items-center gap-3 text-rose-500 font-black text-xs mb-3 uppercase tracking-widest"><Star size={20} fill="currentColor" /> Event Reminder</div>
-                    <p className="text-base font-black text-rose-100 tracking-tight">{scheduleData[activeWeek-1].specialEvent}</p>
+                    <p className="text-base font-black text-rose-100 tracking-tight">{scheduleData[activeWeek - 1].specialEvent}</p>
                   </div>
                 )}
               </div>
@@ -312,9 +312,9 @@ const DailyPlanner = () => {
   // 生成 1/6 到 2/24 的日期
   const generateDates = () => {
     const dates = [];
-    const startDate = new Date(2025, 0, 6); // 1月6日
-    const endDate = new Date(2025, 1, 24);   // 2月24日
-    
+    const startDate = new Date(2026, 0, 6); // 1月6日
+    const endDate = new Date(2026, 1, 24);   // 2月24日
+
     let currentDate = new Date(startDate);
     while (currentDate <= endDate) {
       dates.push(new Date(currentDate));
@@ -324,12 +324,12 @@ const DailyPlanner = () => {
   };
 
   const allDates = generateDates();
-  
+
   // 根據日期判斷屬於哪一週 (與 scheduleData 對應)
   const getWeekInfo = (date) => {
-    const startOfWeek2 = new Date(2025, 0, 6);
+    const startOfWeek2 = new Date(2026, 0, 6);
     const diffDays = Math.floor((date - startOfWeek2) / (1000 * 60 * 60 * 24));
-    const weekIndex = Math.floor(diffDays / 7) + 2; 
+    const weekIndex = Math.floor(diffDays / 7) + 2;
     return scheduleData.find(w => w.week === weekIndex) || scheduleData[7];
   };
 
@@ -385,12 +385,13 @@ const DailyPlanner = () => {
             const dateStr = formatDate(date);
             const weekInfo = getWeekInfo(date);
             const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-            const isToday = dateStr === "1/6"; 
+            const today = new Date();
+            const isToday = dateStr === `${today.getMonth() + 1}/${today.getDate()}`;
             const dayTasks = specificDailyTasks[dateStr];
 
             return (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={`group relative flex items-stretch gap-6 p-1 rounded-[2rem] transition-all hover:translate-x-1 ${isToday ? 'bg-indigo-50/50' : 'bg-transparent'}`}
               >
                 {/* 左側日期軸 */}
@@ -477,19 +478,19 @@ const App = () => {
             </div>
           </div>
           <div className="flex bg-slate-100/60 p-2 rounded-[1.5rem] border border-slate-200/50 backdrop-blur-md overflow-x-auto">
-            <button 
+            <button
               onClick={() => setCurrentTab('annual')}
               className={`flex items-center gap-3 px-6 py-3 rounded-[1.25rem] text-sm font-black transition-all duration-500 whitespace-nowrap ${currentTab === 'annual' ? 'bg-white shadow-xl text-indigo-700 scale-[1.05]' : 'text-slate-400 hover:text-slate-600'}`}
             >
               <Calendar size={18} /> 年度總表
             </button>
-            <button 
+            <button
               onClick={() => setCurrentTab('weekly')}
               className={`flex items-center gap-3 px-6 py-3 rounded-[1.25rem] text-sm font-black transition-all duration-500 whitespace-nowrap ${currentTab === 'weekly' ? 'bg-white shadow-xl text-indigo-700 scale-[1.05]' : 'text-slate-400 hover:text-slate-600'}`}
             >
               <ListTodo size={18} /> 8週細節表
             </button>
-            <button 
+            <button
               onClick={() => setCurrentTab('daily')}
               className={`flex items-center gap-3 px-6 py-3 rounded-[1.25rem] text-sm font-black transition-all duration-500 whitespace-nowrap ${currentTab === 'daily' ? 'bg-white shadow-xl text-indigo-700 scale-[1.05]' : 'text-slate-400 hover:text-slate-600'}`}
             >
@@ -511,7 +512,7 @@ const App = () => {
             <ShieldCheck size={14} /> Schedule Synchronized
           </div>
           <div className="text-slate-300 text-[10px] font-black uppercase tracking-[0.2em]">
-            © 2025 Research Planner Pro | Daily Precision Mode Enabled
+            © 2026 Research Planner Pro | Daily Precision Mode Enabled
           </div>
         </div>
       </footer>
